@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+    
+        Scanner scanner = new Scanner(System.in);
+        
+        long N = scanner.nextLong();
+        scanner.close();
+
+    
+        if (isPerfect(N)) {
+            System.out.println("Perfect Number");
+        } else {
+            System.out.println("Not a Perfect Number");
+        }
+    }
+    public static boolean isPerfect(long number) {
+        if (number <= 1) {
+            return false;
+        }
+
+        long sumOfDivisors = 1; 
+        for (long i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                sumOfDivisors += i;
+                if (i * i != number) {
+                    sumOfDivisors += number / i;
+                }
+            }
+        }
+
+        return sumOfDivisors == number;
+    }
+}
